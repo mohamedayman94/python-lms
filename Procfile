@@ -1,0 +1,1 @@
+ eb: gunicorn project.wsgi

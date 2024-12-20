@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #For Railway deployment
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -157,3 +158,6 @@ CKEDITOR_CONFIGS = {
         ],
     },
 }
+
+#For Railway deployment
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage' 
