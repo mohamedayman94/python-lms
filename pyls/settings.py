@@ -166,3 +166,4 @@ CKEDITOR_CONFIGS = {
 
 #For Railway deployment
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage' 
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app/']
