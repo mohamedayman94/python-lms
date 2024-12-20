@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>My Courses</h2>
+    <a href="{% url 'course_create' %}" class="btn btn-success">
+        <i class="fas fa-plus"></i> Create New Course
+    </a>
+</div>
+
+<div class="row">
+    {% for course in courses %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                {% if course.image %}
+                    <img src="{{ course.image.url }}" class="card-img-top course-image" alt="{{ course.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.title }}</h5>
+                    <p class="card-text">{{ course.description|safe|truncatewords:30 }}</p>
+                    <p class="text-muted">
+                        <small>
+                            Created: {{ course.created_at|date:"M d, Y" }}<br>
+                            Last updated: {{ course.updated_at|date:"M d, Y" }}<br>
+                            Lessons: {{ course.lessons.count }}
+                        </small>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group">
+                        <a href="{% url 'course_detail' course.pk %}" class="btn btn-primary">View Course</a>
+                        <a href="{% url 'course_update' course.pk %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'lesson_create' course.id %}" class="btn btn-success">Add Lesson</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col">
+            <div class="alert alert-info">
+                You haven't created any courses yet. 
+                <a href="{% url 'course_create' %}" class="text-decoration-none">Create your first course</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

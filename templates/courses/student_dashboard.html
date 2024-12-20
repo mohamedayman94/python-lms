@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">My Courses</h2>
+<div class="row">
+    {% for enrollment in enrollments %}
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            {% if enrollment.course.image %}
+            <img src="{{ enrollment.course.image.url }}" class="card-img-top course-image"
+                alt="{{ enrollment.course.title }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ enrollment.course.title }}</h5>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar"
+                        style="width: {{ enrollment.get_progress_percentage }}%"
+                        aria-valuenow="{{ enrollment.get_progress_percentage }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ enrollment.get_progress_percentage|floatformat:1 }}%
+                    </div>
+                </div>
+                <p class="text-muted">Last accessed: {{ enrollment.last_accessed|date:"M d, Y" }}</p>
+                <a href="{% url 'course_detail' enrollment.course.pk %}" class="btn btn-primary">Continue Learning</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col">
+        <div class="alert alert-info">
+            You haven't enrolled in any courses yet.
+            <a href="{% url 'course_list' %}">Browse available courses</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
