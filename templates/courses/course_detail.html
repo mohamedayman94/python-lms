@@ -3,56 +3,63 @@
 {% block title %}{{ course.title }}{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8">
-        <h2>{{ course.title }}</h2>
-        {% if course.image %}
-            <img src="{{ course.image.url }}" class="img-fluid mb-3" alt="{{ course.title }}">
-        {% endif %}
-        <div class="mb-4">{{ course.description|safe }}</div>
-        
-        {% if user.userprofile.is_student %}
-            {% if is_enrolled %}
-                <form method="post" action="{% url 'unenroll_course' course.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger mb-4">Unenroll</button>
-                </form>
-            {% else %}
-                <form method="post" action="{% url 'enroll_course' course.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success mb-4">Enroll Now</button>
-                </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            {% if course.image %}
+            <img src="{{ course.image.url }}" class=" img-fluid detailsCourseImage mb-3" alt="{{ course.title }}">
             {% endif %}
-        {% endif %}
+            <h2>{{ course.title }}</h2>
 
-        {% if user == course.teacher %}
+            <div class="mb-4">{{ course.description|safe }}</div>
+
+            {% if user.userprofile.is_student %}
+            {% if is_enrolled %}
+            <form method="post" action="{% url 'unenroll_course' course.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger mb-4">Unenroll</button>
+            </form>
+            {% else %}
+            <form method="post" action="{% url 'enroll_course' course.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success mb-4">Enroll Now</button>
+            </form>
+            {% endif %}
+            {% endif %}
+
+            {% if user == course.teacher %}
             <div class="mb-4">
                 <a href="{% url 'course_update' course.pk %}" class="btn btn-primary">Edit Course</a>
                 <a href="{% url 'course_delete' course.pk %}" class="btn btn-danger">Delete Course</a>
                 <a href="{% url 'lesson_create' course.id %}" class="btn btn-success">Add Lesson</a>
             </div>
-        {% endif %}
-    </div>
-    
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Course Lessons</h3>
-            </div>
-            <div class="list-group list-group-flush">
-                {% for lesson in course.lessons.all %}
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class=" " style="    background: #C4C4C40F;">
+                <div class="card-header">
+                    <h3 class="card-title" style="padding-block: 1em;     font-size: 24px;">Course Lessons</h3>
+                </div>
+                <div class="list-group list-group-flush gap-3">
+ 
+                    {% for lesson in course.lessons.all %}
                     {% if is_enrolled %}
-                    <a href="{% url 'lesson_detail' lesson.pk %}" class="list-group-item list-group-item-action">
-                        {{ lesson.title }}
+                    <a href="{% url 'lesson_detail' lesson.pk %}" class=" ">
+                        <img src="../../static/admin/img/play_circle_filled_24px.svg">
+                          {{ lesson.title }}
                     </a>
                     {% else %}
-                    <li href="#" class="list-group-item list-group-item-action">
+                    <li href="#" class=" ">
+                        <img src="../../static/admin/img/play_circle_filled_24px.svg">
+
                         {{ lesson.title }}
                     </li>
                     {% endif %}
-                {% empty %}
+                    {% empty %}
                     <div class="list-group-item">No lessons available.</div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

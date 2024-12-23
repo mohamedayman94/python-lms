@@ -51,7 +51,8 @@
     border: none;
     margin-top: 1em;
 }
-.btn-success{
+
+.btn-success {
     padding: 8px;
     gap: 0px;
     border-radius: 10px;
@@ -60,6 +61,7 @@
     border: none;
     margin-top: 1em;
 }
+
 .nav-link a {
     color: black !important;
 }
@@ -87,7 +89,7 @@
 
 .customSignCards {
     width: 442.66px;
-     padding: 31.72px;
+    padding: 31.72px;
     gap: 25.37px;
     border-radius: 15.86px;
     opacity: 0px;
@@ -113,14 +115,55 @@
     line-height: 31.5px;
     color: #1C1D1D;
 }
-.desc{
+
+.desc {
     color: #1c1d1d78;
-     font-size: 20px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 35.14px;
     letter-spacing: 0.02em;
-    text-align: left;
+
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
+
+}
+
+.textHeader {
+    color: #000000;
+    font-size: 24px;
+    line-height: 31px;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    justify-content: center;
+    display: flex;
+    margin-block: 2em;
+
+}
+.course-image{
+    border-radius: 25px;
+    height: 200px;
+    object-fit: cover;
+    width: 300px;
+}
+.card-title{
+    color: #000000;
+     font-size: 16px;
+    font-weight: 700;
+    line-height: 21px;
+     text-underline-position: from-font;
+    text-decoration-skip-ink: none;
     
+}
+.courseCards{
+    background: #EFEFEF;
+     border-radius: 15px;
+}
+.detailsCourseImage{
+    width: 793px;
+    height: 448px;
+    top: 100px;
+    left: 54px;
+    gap: 0px;
+    border-radius: 30px;
+    opacity: 0px;
 }
