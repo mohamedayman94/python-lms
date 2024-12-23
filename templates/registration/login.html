@@ -3,13 +3,14 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
+<div class="container-fluid landing"> 
+<div class="row w-100 justify-content-center ">
+         <div class="mainCard" style="width: 30%;">
             <div class="card-header">
-                <h2 class="text-center mb-0">Login</h2>
+                <h2 class="text-center mb-0 form-label" style="    font-size: 26px;" >Login</h2>
+                <p class="mt-2 customFooter">Welcome Back 👋</p>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="    width: 90%;"> 
                 <form method="post" novalidate>
                     {% csrf_token %}
                     {% if form.non_field_errors %}
@@ -55,10 +56,10 @@
                     {% endif %}
                 </form>
             </div>
-            <div class="card-footer text-center">
+            <div class="card-footer customFooter text-center mt-4">
                 <p class="mb-0">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+ {% endblock %}

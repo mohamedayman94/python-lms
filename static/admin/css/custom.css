@@ -1,0 +1,126 @@
+.landing {
+    background-image: url(../img/authLanding.png);
+    height: 100vh;
+    background-size: cover;
+    background-position: 0 -160px;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e6f0ff;
+    border-radius: 10px;
+    padding: 3em;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.customFooter {
+    color: #a0aec0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: .03em;
+    display: flex;
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-label {
+    color: #0047b3 !important;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: .03em;
+    margin-top: .3em;
+}
+
+.btn-primary {
+    padding: 8px;
+    gap: 0px;
+    border-radius: 10px;
+    background: #0075ff;
+    color: #fff;
+    border: none;
+    margin-top: 1em;
+}
+.btn-success{
+    padding: 8px;
+    gap: 0px;
+    border-radius: 10px;
+    background: green;
+    color: #fff;
+    border: none;
+    margin-top: 1em;
+}
+.nav-link a {
+    color: black !important;
+}
+
+.loginBtn {
+    width: 100px;
+    background: white;
+    border-radius: 10px;
+    justify-content: center;
+    display: flex;
+    border: 1px solid #0075ff;
+    color: #0075ff;
+
+}
+
+.signupBtn {
+    width: 100px;
+    background: white;
+    border-radius: 10px;
+    justify-content: center;
+    display: flex;
+    background: #0075ff;
+    color: white;
+}
+
+.customSignCards {
+    width: 442.66px;
+     padding: 31.72px;
+    gap: 25.37px;
+    border-radius: 15.86px;
+    opacity: 0px;
+    background: #F0F7FF;
+    border: none;
+
+}
+
+.icon {
+    width: 33px;
+    background: white;
+    height: 33px;
+    border-radius: 6px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #437fc8;
+}
+
+.signMainCards h3 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 31.5px;
+    color: #1C1D1D;
+}
+.desc{
+    color: #1c1d1d78;
+     font-size: 20px;
+    font-weight: 400;
+    line-height: 35.14px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    
+}

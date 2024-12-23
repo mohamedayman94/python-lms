@@ -8,19 +8,29 @@
         <h2 class="text-center mb-4">Sign Up</h2>
         <div class="row">
             <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <h3>I am a Student</h3>
-                        <p>Join courses and track your progress</p>
+                <div class="  h-100">
+                    <div class="card-body customSignCards text-center">
+                        <div class="d-flex justify-content-between align-items-center signMainCards">
+                            <h3>I am a Student</h3>
+                            <div class="icon">
+                            <img src="../../static/admin/img/student.png">
+                            </div>
+                        </div>
+                        <p class="desc">Join courses and track your progress</p>
                         <a href="{% url 'student_signup' %}" class="btn btn-primary">Sign up as Student</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <h3>I am a Teacher</h3>
-                        <p>Create and manage your courses</p>
+                <div class="  h-100">
+                    <div class="card-body customSignCards text-center">
+                        <div class="d-flex justify-content-between align-items-center signMainCards">
+                            <h3>I am a Teacher</h3>
+                            <div class="icon">
+                                <img src="../../static/admin/img/teacher.png">
+                            </div>
+                        </div>
+                        <p class="desc">Create and manage your courses</p>
                         <a href="{% url 'teacher_signup' %}" class="btn btn-success">Sign up as Teacher</a>
                     </div>
                 </div>
