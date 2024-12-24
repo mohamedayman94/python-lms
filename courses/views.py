@@ -168,16 +168,18 @@ class LessonUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         lesson = self.get_object()
         return self.request.user == lesson.course.teacher
 
-class LessonDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    def get_context_data(self, **kwargs):
+        # Add the related course object to the template context
+        context = super().get_context_data(**kwargs)
+        context['course'] = self.object.course  # Pass the course related to the lesson
+        return context
+
+class LessonDeleteView(LoginRequiredMixin, DeleteView):
     model = Lesson
-    template_name = 'courses/lesson_confirm_delete.html'
-    
-    def test_func(self):
-        lesson = self.get_object()
-        return self.request.user == lesson.course.teacher
-    
+    template_name = "courses/lesson_confirm_delete.html"
+
     def get_success_url(self):
-        return reverse_lazy('course_detail', kwargs={'pk': self.object.course.pk})
+        return reverse_lazy('course_list')  # Or any other valid redirect
 
 class StudentDashboardView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Enrollment
