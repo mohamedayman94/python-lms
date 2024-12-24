@@ -35,7 +35,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'student_dashboard' %}">My Dashboard</a>
                             </li>
-                        {% elif user.is_teacher %}
+                        {% elif user.userprofile.is_teacher %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'teacher_dashboard' %}">My Dashboard</a>
                             </li>

@@ -88,7 +88,7 @@ class CourseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     template_name = 'courses/course_form.html'
     
     def test_func(self):
-        return self.request.user.is_teacher
+        return self.request.user.userprofile.is_teacher
     
     def form_valid(self, form):
         form.instance.teacher = self.request.user
@@ -196,7 +196,7 @@ class TeacherDashboardView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     context_object_name = 'courses'
     
     def test_func(self):
-        return self.request.user.is_teacher
+        return self.request.user.userprofile.is_teacher
     
     def get_queryset(self):
         return Course.objects.filter(teacher=self.request.user)
