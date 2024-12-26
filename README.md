@@ -1,7 +1,7 @@
 # python-lms
 Python Learning Management System
 
-## TO setup the project locally
+## To setup the project locally
 python -m venv myvenv
 
 myvenv\Scripts\activate
