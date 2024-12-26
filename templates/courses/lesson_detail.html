@@ -4,61 +4,83 @@
 
 {% block content %}
 <div class="row">
+    <!-- Main Content -->
     <div class="col-md-8">
-        <h2>{{ lesson.title }}</h2>
-        
-        {% if lesson.image %}
-            <img src="{{ lesson.image.url }}" class="img-fluid lesson-image mb-4" alt="{{ lesson.title }}">
-        {% endif %}
-        
-        <div class="lesson-content mb-4">
-            {{ lesson.content|safe }}
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <!-- Course Name -->
+                <h5 class="text-secondary">
+                    <i class="fas fa-book"></i> {{ lesson.course.title }}
+                </h5>
+                <!-- Lesson Title -->
+                <h2 class="card-title text-primary">{{ lesson.title }}</h2>
+                
+                {% if lesson.image %}
+                    <img src="{{ lesson.image.url }}" class="img-fluid lesson-image rounded mb-4" alt="{{ lesson.title }}">
+                {% endif %}
+                
+                <div class="lesson-content mb-4">
+                    {{ lesson.content|safe }}
+                </div>
+                
+                {% if lesson.video_embed_code %}
+                    <div class="embed-responsive embed-responsive-16by9 mb-4">
+                        {{ lesson.video_embed_code|safe }}
+                    </div>
+                {% endif %}
+                
+                {% if user.userprofile.is_student and completion %}
+                    {% if completion.is_completed %}
+                        <button class="btn btn-success mb-4" disabled>
+                            <i class="fas fa-check-circle"></i> Completed
+                        </button>
+                    {% else %}
+                        <form method="post" action="{% url 'mark_lesson_complete' lesson.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary mb-4">
+                                <i class="fas fa-check"></i> Mark as Complete
+                            </button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+                
+                {% if user == lesson.course.teacher %}
+                    <div class="d-flex mt-3">
+                        <a href="{% url 'lesson_update' lesson.pk %}" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{% url 'lesson_delete' lesson.pk %}" class="btn btn-danger ms-2">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-
-        
-        {% if lesson.video_embed_code %}
-            <div class="embed-responsive embed-responsive-16by9 mb-4">
-                {{ lesson.video_embed_code|safe }}
-            </div>
-        {% endif %}
-
-        {% if user.userprofile.is_student and completion %}
-            {% if completion.is_completed %}
-                <button class="btn btn-success mb-4" disabled>
-                    <i class="fas fa-check-circle"></i> Completed
-                </button>
-            {% else %}
-                <form method="post" action="{% url 'mark_lesson_complete' lesson.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary mb-4">
-                        <i class="fas fa-check"></i> Mark as Complete
-                    </button>
-                </form>
-            {% endif %}
-        {% endif %}
-
-        {% if user == lesson.course.teacher %}
-            <div class="mb-4">
-                <a href="{% url 'lesson_update' lesson.pk %}" class="btn btn-primary">Edit Lesson</a>
-                <a href="{% url 'lesson_delete' lesson.pk %}" class="btn btn-danger">Delete Lesson</a>
-            </div>
-        {% endif %}
     </div>
-
+    
+    <!-- Sidebar -->
     <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Course Outline</h3>
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Course Outline</h3>
             </div>
             <div class="list-group list-group-flush">
                 {% for course_lesson in lesson.course.lessons.all %}
                     <a href="{% url 'lesson_detail' course_lesson.pk %}" 
-                       class="list-group-item list-group-item-action {% if course_lesson == lesson %}active{% endif %}">
+                       class="list-group-item list-group-item-action {% if course_lesson == lesson %}active bg-primary text-white{% endif %}">
                         {{ course_lesson.title }}
                     </a>
                 {% endfor %}
             </div>
         </div>
+        
+        {% if user == lesson.course.teacher %}
+            <div class="mt-4">
+                <a href="{% url 'lesson_create' lesson.course.pk %}" class="btn btn-success w-100 shadow-sm">
+                    <i class="fas fa-plus-circle"></i> Create New Lesson
+                </a>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
