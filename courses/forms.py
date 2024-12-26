@@ -55,6 +55,12 @@ class CourseForm(forms.ModelForm):
         widgets = {
             'description': CKEditorWidget(),
         }
+        
+def clean_title(self):
+    title = self.cleaned_data.get('title')
+    if Course.objects.filter(title=title).exists():
+        raise forms.ValidationError("A course with this title already exists.")
+    return title        
 
 class LessonForm(forms.ModelForm):
     class Meta:
