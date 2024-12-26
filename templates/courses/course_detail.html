@@ -15,15 +15,21 @@
 
             {% if user.userprofile.is_student %}
             {% if is_enrolled %}
-            <form method="post" action="{% url 'unenroll_course' course.id %}">
+            <form method="post" action="{% url 'unenroll_course' course.id %}" class="enroll-form">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger mb-4">Unenroll</button>
+                <div class="justify-content-center d-flex"> 
+                <button type="submit" class="btn unenroll-btn">Unenroll</button>
+            </div>
             </form>
             {% else %}
-            <form method="post" action="{% url 'enroll_course' course.id %}">
+            <form method="post" action="{% url 'enroll_course' course.id %}" class="enroll-form">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-success mb-4">Enroll Now</button>
+                <div class="justify-content-center d-flex"> 
+
+                <button type="submit" class="btn enroll-btn">Enroll Now</button>
+            </div>
             </form>
+            
             {% endif %}
             {% endif %}
 
@@ -36,22 +42,22 @@
             {% endif %}
         </div>
 
-        <div class="col-md-4">
-            <div class=" " style="    background: #C4C4C40F;">
-                <div class="card-header">
-                    <h3 class="card-title" style="padding-block: 1em;     font-size: 24px;">Course Lessons</h3>
-                </div>
-                <div class="list-group list-group-flush gap-3">
+    <div class="col-md-3">
+        <div class="course-outline-card  ">
+            <div class="course-outline-header">
+                <h3 class="course-outline-title text-center">Course Outline</h3>
+            </div>
+                <div class="list-group list-group-flush  course-outline-list  gap-3">
  
                     {% for lesson in course.lessons.all %}
                     {% if is_enrolled %}
-                    <a href="{% url 'lesson_detail' lesson.pk %}" class=" ">
-                        <img src="../../static/admin/img/play_circle_filled_24px.svg">
+                    <a href="{% url 'lesson_detail' lesson.pk %}" class="course-outline-item d-flex align-items-center ">
+                        <img alt="Play Icon" class="  me-2" src="../../static/admin/img/play_circle_filled_24px.svg">
                           {{ lesson.title }}
                     </a>
                     {% else %}
                     <li href="#" class=" ">
-                        <img src="../../static/admin/img/play_circle_filled_24px.svg">
+                        <img alt="Play Icon" class="  me-2" src="../../static/admin/img/play_circle_filled_24px.svg">
 
                         {{ lesson.title }}
                     </li>
