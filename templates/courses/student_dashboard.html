@@ -3,16 +3,16 @@
 {% block title %}Student Dashboard{% endblock %}
 
 {% block content %}
-<h2 class="mb-4 justify-content-center d-flex">  My Courses</h2>
-<div class="row">
+<h2 class="mb-4 justify-content-center d-flex"> My Courses</h2>
+<div class="row gap-4 justify-content-center ">
     {% for enrollment in enrollments %}
-    <div class="col-lg-3 col-md-6 mb-4  align-items-stretch courseCards courseCards" >
-        <div class= " h-100  p-3 flex-column justify-content-center text-center"   >
+    <div class="col-lg-3 col-md-6 mb-4 align-items-stretch courseCards">
+        <div class="h-100 d-flex flex-column justify-content-end d-flex justify-content-between text-center p-3">
             {% if enrollment.course.image %}
             <img src="{{ enrollment.course.image.url }}" class="card-img-top course-image"
                 alt="{{ enrollment.course.title }}">
             {% endif %}
-            <div class="card-body">
+            <div class="card-body flex-grow-1">
                 <h5 class="card-title">{{ enrollment.course.title }}</h5>
                 <div class="progress mb-3">
                     <div class="progress-bar" role="progressbar"
@@ -22,22 +22,25 @@
                     </div>
                 </div>
                 <p class="text-muted">Last accessed: {{ enrollment.last_accessed|date:"M d, Y" }}</p>
-                <a href="{% url 'course_detail' enrollment.course.pk %}" class="btn btn-primary">Continue Learning</a>
             </div>
+            <a href="{% url 'course_detail' enrollment.course.pk %}" class="btn btn-primary mt-auto">Continue Learning</a>
         </div>
     </div>
     {% empty %}
     <div class="row justify-content-center d-flex">
-    <div class="col justify-content-center d-flex">
-        <div class="alert alert-info">
-            <div class="justify-content-center d-flex"> 
-            <img class="w-50" src="../../static/admin/img/empty-box.png">
-        </div>
-           <p class="justify-content-center d-flex">You haven't enrolled in any courses yet. </p> 
-            <a class="align-items-center d-flex gap-2 justify-content-center" href="{% url 'course_list' %}">Browse available courses <img src="../../static/admin/img/arrow.svg"></a>
+        <div class="col justify-content-center d-flex">
+            <div class="alert alert-info">
+                <div class="justify-content-center d-flex">
+                    <img class="w-50" src="../../static/admin/img/empty-box.png">
+                </div>
+                <p class="justify-content-center d-flex">You haven't enrolled in any courses yet.</p>
+                <a class="align-items-center d-flex gap-2 justify-content-center" href="{% url 'course_list' %}">
+                    Browse available courses
+                    <img src="../../static/admin/img/arrow.svg">
+                </a>
+            </div>
         </div>
     </div>
-</div>
     {% endfor %}
 </div>
 {% endblock %}

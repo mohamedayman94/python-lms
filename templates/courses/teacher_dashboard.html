@@ -12,10 +12,10 @@
 </div>
 </div>
 
-<div class="row">
+<div class="row gap-4 justify-content-center ">
     {% for course in courses %}
         <div class="col-lg-3 col-md-6 mb-4  align-items-stretch courseCards">
-            <div class=" h-100  p-3 flex-column justify-content-center text-center">
+            <div class=" h-100 justify-content-end d-flex p-3 flex-column  text-center">
                 {% if course.image %}
                     <img src="{{ course.image.url }}" class="card-img-top course-image" alt="{{ course.title }}">
                 {% endif %}
